@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.utils.translation.template import blankout
 from rest_framework import serializers
 
 from cinema.models import (
@@ -56,10 +57,11 @@ class MovieListSerializer(MovieSerializer):
 class MovieDetailSerializer(MovieSerializer):
     genres = GenreSerializer(many=True, read_only=True)
     actors = ActorSerializer(many=True, read_only=True)
+    image = serializers.ImageField()
 
     class Meta:
         model = Movie
-        fields = ("id", "title", "description", "duration", "genres", "actors")
+        fields = ("id", "title", "description", "duration", "genres", "actors", "image")
 
 
 class MovieSessionSerializer(serializers.ModelSerializer):

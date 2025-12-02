@@ -66,7 +66,6 @@ class MovieViewSet(
     GenericViewSet,
 ):
     queryset = Movie.objects.prefetch_related("genres", "actors")
-    serializer_class = MovieSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
